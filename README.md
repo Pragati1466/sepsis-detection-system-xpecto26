@@ -2,7 +2,25 @@
 
 SepsisNet is a comprehensive temporal AI system designed to predict sepsis onset **6 hours before clinical manifestation** using advanced machine learning and clinical domain expertise. It bridges the critical gap between data science and critical care medicine.
 
-![Architecture Diagram](docs/images/architecture.png)
+### System Architecture Diagram
+
+```mermaid
+graph TD
+    A[MIMIC-IV ICU Data <br/> 1.55M records, 44 variables] --> B(Missingness-Aware Preprocessing Layer)
+    B --> C(Temporal Feature Engineering Engine <br/> 3-hr rolling windows)
+    C --> D(SMOTE-ENN Class Balancing Module <br/> 8:1 synthetic oversampling)
+    D --> E(Gradient Boosted Trees Core <br/> XGBoost, n_estimators=100)
+    E --> F(SHAP Explainability Framework <br/> Feature Attribution)
+    F --> G[Clinical Risk Stratification Output <br/> High/Moderate/Low Risk]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px,color:#000000
+    style G fill:#bbf,stroke:#333,stroke-width:2px,color:#000000
+    style B fill:#e1f5fe,stroke:#01579b,stroke-width:1px,color:#000000
+    style C fill:#e1f5fe,stroke:#01579b,stroke-width:1px,color:#000000
+    style D fill:#e1f5fe,stroke:#01579b,stroke-width:1px,color:#000000
+    style E fill:#e1f5fe,stroke:#01579b,stroke-width:1px,color:#000000
+    style F fill:#e1f5fe,stroke:#01579b,stroke-width:1px,color:#000000
+```
 
 ## 🚀 Key Features
 
@@ -45,11 +63,22 @@ Built with **MIMIC-IV Database** integration. The system processes 1.55 million 
 
 ---
 
-## � The Prediction Workflow
+## 🔄 The Prediction Workflow
 
 SepsisNet eliminates reactive sepsis management through proactive temporal reasoning:
 
-![Prediction Flow Diagram](docs/images/prediction_flow.png)
+```mermaid
+flowchart LR
+    Ingestion[<b>1. Data Ingestion</b><br>Real-time ICU Streams] --> Preprocessing[<b>Preprocessing</b><br>Missingness Handling]
+    Preprocessing --> FE[<b>2. Feature Extraction</b><br>3-hour Rolling Windows]
+    FE --> Inference[<b>3. Model Inference</b><br>GBT Probability Scoring]
+    Inference --> SHAP[<b>Explainability</b><br>SHAP Attribution]
+    SHAP --> Stratification[<b>4. Risk Stratification</b><br>High/Mid/Low Categories]
+    Stratification --> Alerting[<b>5. Clinical Alerting</b><br>EMR Notifications & Top 5 Reasons]
+    
+    classDef step fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000000;
+    class Ingestion,Preprocessing,FE,Inference,SHAP,Stratification,Alerting step;
+```
 
 1.  **Data Ingestion**: Real-time ICU data streams processed through missingness-aware pipelines
 2.  **Temporal Feature Extraction**: 3-hour rolling windows compute physiological dynamics
@@ -140,20 +169,36 @@ The MIMIC-IV PostgreSQL database revolves around the following core clinical var
 ## 🏗️ System Architecture
 
 ### Data Flow Pipeline
-```
-MIMIC-IV ICU Data (1.55M records) 
-    ↓
-Missingness-Aware Preprocessing Layer
-    ↓
-Temporal Feature Engineering Engine
-    ↓
-SMOTE-ENN Class Balancing Module
-    ↓
-Gradient Boosted Trees Ensemble
-    ↓
-SHAP Explainability Framework
-    ↓
-Clinical Risk Stratification Output
+```mermaid
+graph TD
+    subgraph Data Layer
+        A[MIMIC-IV ICU Data<br>1.55M records]
+    end
+    
+    subgraph Processing Engine
+        B[Missingness-Aware Preprocessing Layer]
+        C[Temporal Feature Engineering Engine]
+        D[SMOTE-ENN Class Balancing Module]
+    end
+    
+    subgraph Machine Learning
+        E[Gradient Boosted Trees Ensemble]
+        F[SHAP Explainability Framework]
+    end
+    
+    subgraph Clinical Interface
+        G((Clinical Risk Stratification Output))
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    
+    classDef node fill:#fff3e0,stroke:#e65100,stroke-width:1px,color:#000000;
+    class A,B,C,D,E,F,G node;
 ```
 
 ### Technical Architecture Layers
