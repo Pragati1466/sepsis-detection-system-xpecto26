@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notify_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <!-- Phase 2: Data Preprocessing -->
+      <operator activated="true" class="read_csv" compatibility="9.10.001" expanded="true" height="68" name="Read CSV" width="90" x="45" y="34">
+        <parameter key="csv_file" value="/Users/apple/Downloads/iit/Dataset.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="false"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations">
+          <parameter key="0" value="Name"/>
+        </list>
+        <parameter key="date_format" value=""/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouping_character" value=","/>
+        <list key="data_meta_types">
+          <parameter key="0" value="nominal"/>
+          <parameter key="1" value="numeric"/>
+          <parameter key="2" value="numeric"/>
+          <parameter key="3" value="numeric"/>
+          <parameter key="4" value="numeric"/>
+          <parameter key="5" value="numeric"/>
+          <parameter key="6" value="numeric"/>
+          <parameter key="7" value="numeric"/>
+          <parameter key="8" value="numeric"/>
+          <parameter key="9" value="numeric"/>
+          <parameter key="10" value="numeric"/>
+          <parameter key="11" value="numeric"/>
+          <parameter key="12" value="numeric"/>
+          <parameter key="13" value="numeric"/>
+          <parameter key="14" value="numeric"/>
+          <parameter key="15" value="numeric"/>
+          <parameter key="16" value="numeric"/>
+          <parameter key="17" value="numeric"/>
+          <parameter key="18" value="numeric"/>
+          <parameter key="19" value="numeric"/>
+          <parameter key="20" value="numeric"/>
+          <parameter key="21" value="numeric"/>
+          <parameter key="22" value="numeric"/>
+          <parameter key="23" value="numeric"/>
+          <parameter key="24" value="numeric"/>
+          <parameter key="25" value="numeric"/>
+          <parameter key="26" value="numeric"/>
+          <parameter key="27" value="numeric"/>
+          <parameter key="28" value="numeric"/>
+          <parameter key="29" value="numeric"/>
+          <parameter key="30" value="numeric"/>
+          <parameter key="31" value="numeric"/>
+          <parameter key="32" value="numeric"/>
+          <parameter key="33" value="numeric"/>
+          <parameter key="34" value="numeric"/>
+          <parameter key="35" value="numeric"/>
+          <parameter key="36" value="numeric"/>
+          <parameter key="37" value="numeric"/>
+          <parameter key="38" value="numeric"/>
+          <parameter key="39" value="numeric"/>
+          <parameter key="40" value="nominal"/>
+        </list>
+        <list key="data_value_types">
+          <parameter key="0" value="nominal"/>
+          <parameter key="1" value="numeric"/>
+          <parameter key="2" value="numeric"/>
+          <parameter key="3" value="numeric"/>
+          <parameter key="4" value="numeric"/>
+          <parameter key="5" value="numeric"/>
+          <parameter key="6" value="numeric"/>
+          <parameter key="7" value="numeric"/>
+          <parameter key="8" value="numeric"/>
+          <parameter key="9" value="numeric"/>
+          <parameter key="10" value="numeric"/>
+          <parameter key="11" value="numeric"/>
+          <parameter key="12" value="numeric"/>
+          <parameter key="13" value="numeric"/>
+          <parameter key="14" value="numeric"/>
+          <parameter key="15" value="numeric"/>
+          <parameter key="16" value="numeric"/>
+          <parameter key="17" value="numeric"/>
+          <parameter key="18" value="numeric"/>
+          <parameter key="19" value="numeric"/>
+          <parameter key="20" value="numeric"/>
+          <parameter key="21" value="numeric"/>
+          <parameter key="22" value="numeric"/>
+          <parameter key="23" value="numeric"/>
+          <parameter key="24" value="numeric"/>
+          <parameter key="25" value="numeric"/>
+          <parameter key="26" value="numeric"/>
+          <parameter key="27" value="numeric"/>
+          <parameter key="28" value="numeric"/>
+          <parameter key="29" value="numeric"/>
+          <parameter key="30" value="numeric"/>
+          <parameter key="31" value="numeric"/>
+          <parameter key="32" value="numeric"/>
+          <parameter key="33" value="numeric"/>
+          <parameter key="34" value="numeric"/>
+          <parameter key="35" value="numeric"/>
+          <parameter key="36" value="numeric"/>
+          <parameter key="37" value="numeric"/>
+          <parameter key="38" value="numeric"/>
+          <parameter key="39" value="numeric"/>
+          <parameter key="40" value="nominal"/>
+        </list>
+        <list key="missings_values"/>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="data_row_major" value="false"/>
+      </operator>
+      
+      <operator activated="true" class="filter_examples" compatibility="9.10.001" expanded="true" height="82" name="Filter Adult ICU Stays" width="90" x="179" y="34">
+        <parameter key="parameter_class" value=""/>
+        <parameter key="parameter_parameter" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="condition_parameter" value="Age"/>
+        <parameter key="condition_value" value=">= 18"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_list_entry" value="Age >= 18"/>
+        </list>
+        <parameter key="filter_type" value="include"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      
+      <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Generate Sepsis-3 Labels" width="90" x="313" y="34">
+        <list key="function_descriptions">
+          <parameter key="Sepsis_3_Label" value="if(SepsisLabel == 1 &amp;&amp; Hour >= 6, 1, 0)"/>
+          <parameter key="Hours_Before_Onset" value="if(SepsisLabel == 1, Hour, missing)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      
+      <operator activated="true" class="filter_examples" compatibility="9.10.001" expanded="true" height="82" name="Filter Pre-Onset Cases" width="90" x="447" y="34">
+        <parameter key="parameter_class" value=""/>
+        <parameter key="parameter_parameter" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="condition_parameter" value="Sepsis_3_Label"/>
+        <parameter key="condition_value" value="= 1"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_list_entry" value="Sepsis_3_Label = 1"/>
+        </list>
+        <parameter key="filter_type" value="include"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      
+      <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="82" name="Replace Missing Lab Values" width="90" x="581" y="34">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="BaseExcess|HCO3|FiO2|pH|PaCO2|SaO2|AST|BUN|Alkalinephos|Calcium|Chloride|Creatinine|Bilirubin_direct|Glucose|Lactate|Magnesium|Phosphate|Potassium|Bilirubin_total|TroponinI|Hct|Hgb|PTT|WBC|Fibrinogen|Platelets"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="default" value="average"/>
+        <list key="columns">
+          <parameter key="BaseExcess" value="average"/>
+          <parameter key="HCO3" value="average"/>
+          <parameter key="FiO2" value="average"/>
+          <parameter key="pH" value="average"/>
+          <parameter key="PaCO2" value="average"/>
+          <parameter key="SaO2" value="average"/>
+          <parameter key="AST" value="average"/>
+          <parameter key="BUN" value="average"/>
+          <parameter key="Alkalinephos" value="average"/>
+          <parameter key="Calcium" value="average"/>
+          <parameter key="Chloride" value="average"/>
+          <parameter key="Creatinine" value="average"/>
+          <parameter key="Bilirubin_direct" value="average"/>
+          <parameter key="Glucose" value="average"/>
+          <parameter key="Lactate" value="average"/>
+          <parameter key="Magnesium" value="average"/>
+          <parameter key="Phosphate" value="average"/>
+          <parameter key="Potassium" value="average"/>
+          <parameter key="Bilirubin_total" value="average"/>
+          <parameter key="TroponinI" value="average"/>
+          <parameter key="Hct" value="average"/>
+          <parameter key="Hgb" value="average"/>
+          <parameter key="PTT" value="average"/>
+          <parameter key="WBC" value="average"/>
+          <parameter key="Fibrinogen" value="average"/>
+          <parameter key="Platelets" value="average"/>
+        </list>
+        <parameter key="replenishment_value" value="0"/>
+        <parameter key="collaps_replenishment" value="average"/>
+      </operator>
+      
+      <operator activated="true" class="replace_missing_values" compatibility="9.10.001" expanded="true" height="82" name="Replace Missing Vital Values" width="90" x="715" y="34">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="HR|O2Sat|Temp|SBP|MAP|DBP|Resp|EtCO2"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="default" value="previous"/>
+        <list key="columns">
+          <parameter key="HR" value="previous"/>
+          <parameter key="O2Sat" value="previous"/>
+          <parameter key="Temp" value="previous"/>
+          <parameter key="SBP" value="previous"/>
+          <parameter key="MAP" value="previous"/>
+          <parameter key="DBP" value="previous"/>
+          <parameter key="Resp" value="previous"/>
+          <parameter key="EtCO2" value="previous"/>
+        </list>
+        <parameter key="replenishment_value" value="0"/>
+        <parameter key="collaps_replenishment" value="previous"/>
+      </operator>
+      
+      <!-- Phase 3: Feature Engineering -->
+      <!-- Task 3.1: Shock Index Calculation -->
+      <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Calculate Shock Index" width="90" x="849" y="34">
+        <list key="function_descriptions">
+          <parameter key="Shock_Index" value="if(SBP > 0, HR / SBP, missing)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      
+      <!-- Task 3.2: Rolling Window Features -->
+      <operator activated="true" class="moving_average" compatibility="9.10.001" expanded="true" height="82" name="HR 3-Hour Mean" width="90" x="983" y="34">
+        <parameter key="attribute_name" value="HR"/>
+        <parameter key="window_size" value="3"/>
+        <parameter key="ignore_missing_values" value="true"/>
+        <parameter key="result_attribute" value="HR_3hr_Mean"/>
+      </operator>
+      
+      <operator activated="true" class="moving_average" compatibility="9.10.001" expanded="true" height="82" name="HR 3-Hour StdDev" width="90" x="1117" y="34">
+        <parameter key="attribute_name" value="HR"/>
+        <parameter key="window_size" value="3"/>
+        <parameter key="ignore_missing_values" value="true"/>
+        <parameter key="result_attribute" value="HR_3hr_StdDev"/>
+        <parameter key="aggregation" value="standard_deviation"/>
+      </operator>
+      
+      <operator activated="true" class="moving_average" compatibility="9.10.001" expanded="true" height="82" name="O2Sat 3-Hour Mean" width="90" x="983" y="136">
+        <parameter key="attribute_name" value="O2Sat"/>
+        <parameter key="window_size" value="3"/>
+        <parameter key="ignore_missing_values" value="true"/>
+        <parameter key="result_attribute" value="O2Sat_3hr_Mean"/>
+      </operator>
+      
+      <operator activated="true" class="moving_average" compatibility="9.10.001" expanded="true" height="82" name="O2Sat 3-Hour StdDev" width="90" x="1117" y="136">
+        <parameter key="attribute_name" value="O2Sat"/>
+        <parameter key="window_size" value="3"/>
+        <parameter key="ignore_missing_values" value="true"/>
+        <parameter key="result_attribute" value="O2Sat_3hr_StdDev"/>
+        <parameter key="aggregation" value="standard_deviation"/>
+      </operator>
+      
+      <!-- Task 3.3: SOFA Sub-scores -->
+      <operator activated="true" class="generate_attributes" compatibility="9.10.001" expanded="true" height="82" name="Calculate SOFA Sub-scores" width="90" x="1251" y="85">
+        <list key="function_descriptions">
+          <!-- Renal SOFA Score (based on Creatinine) -->
+          <parameter key="SOFA_Renal" value="if(is_missing(Creatinine), 0,
+if(Creatinine &lt; 1.2, 0,
+if(Creatinine &lt; 2.0, 1,
+if(Creatinine &lt; 3.5, 2,
+if(Creatinine &lt; 5.0, 3, 4)))))"/>
+          
+          <!-- Respiratory SOFA Score (based on PaO2/FiO2 ratio) -->
+          <parameter key="PaO2_FiO2_Ratio" value="if(FiO2 > 0, PaCO2 * FiO2 / 21, missing)"/>
+          <parameter key="SOFA_Respiratory" value="if(is_missing(PaO2_FiO2_Ratio), 0,
+if(PaO2_FiO2_Ratio >= 400, 0,
+if(PaO2_FiO2_Ratio >= 300, 1,
+if(PaO2_FiO2_Ratio >= 200, 2,
+if(PaO2_FiO2_Ratio >= 100, 3, 4)))))"/>
+          
+          <!-- Cardiovascular SOFA Score (based on MAP and vasopressor use) -->
+          <parameter key="SOFA_Cardiovascular" value="if(is_missing(MAP), 0,
+if(MAP >= 70, 0,
+if(MAP >= 50, 1,
+if(MAP >= 30, 2, 3)))"/>
+          
+          <!-- Total SOFA Score -->
+          <parameter key="SOFA_Total" value="SOFA_Renal + SOFA_Respiratory + SOFA_Cardiovascular"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      
+      <!-- Task 3.4: Normalize Features -->
+      <operator activated="true" class="normalize" compatibility="9.10.001" expanded="true" height="82" name="Normalize Features" width="90" x="1385" y="85">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="value_type"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="nominal"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="method" value="Z-transformation"/>
+        <parameter key="eliminate_zero_variance" value="true"/>
+      </operator>
+      
+      <!-- Output -->
+      <operator activated="true" class="write_csv" compatibility="9.10.001" expanded="true" height="82" name="Write Feature Engineered Data" width="90" x="1519" y="85">
+        <parameter key="csv_file" value="/Users/apple/Downloads/iit/feature_engineered_sepsis_data.csv"/>
+        <parameter key="column_separator" value=","/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date" value="yyyy-MM-dd HH:mm:ss"/>
+        <parameter key="quote_character" value="&quot;"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <parameter key="zipped" value="false"/>
+      </operator>
+      
+      <!-- Connections -->
+      <connect from_op="Read CSV" from_port="output" to_op="Filter Adult ICU Stays" to_port="example set input"/>
+      <connect from_op="Filter Adult ICU Stays" from_port="example set output" to_op="Generate Sepsis-3 Labels" to_port="example set input"/>
+      <connect from_op="Generate Sepsis-3 Labels" from_port="example set output" to_op="Filter Pre-Onset Cases" to_port="example set input"/>
+      <connect from_op="Filter Pre-Onset Cases" from_port="example set output" to_op="Replace Missing Lab Values" to_port="example set input"/>
+      <connect from_op="Replace Missing Lab Values" from_port="example set output" to_op="Replace Missing Vital Values" to_port="example set input"/>
+      <connect from_op="Replace Missing Vital Values" from_port="example set output" to_op="Calculate Shock Index" to_port="example set input"/>
+      <connect from_op="Calculate Shock Index" from_port="example set output" to_op="HR 3-Hour Mean" to_port="example set input"/>
+      <connect from_op="HR 3-Hour Mean" from_port="example set output" to_op="HR 3-Hour StdDev" to_port="example set input"/>
+      <connect from_op="HR 3-Hour StdDev" from_port="example set output" to_op="O2Sat 3-Hour Mean" to_port="example set input"/>
+      <connect from_op="O2Sat 3-Hour Mean" from_port="example set output" to_op="O2Sat 3-Hour StdDev" to_port="example set input"/>
+      <connect from_op="O2Sat 3-Hour StdDev" from_port="example set output" to_op="Calculate SOFA Sub-scores" to_port="example set input"/>
+      <connect from_op="Calculate SOFA Sub-scores" from_port="example set output" to_op="Normalize Features" to_port="example set input"/>
+      <connect from_op="Normalize Features" from_port="example set output" to_op="Write Feature Engineered Data" to_port="example set input"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+    </process>
+  </operator>
+</process>

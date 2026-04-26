@@ -1,0 +1,11 @@
+Patient_ID,Hour,Actual_Label,Predicted_Label,Prediction_Confidence,Risk_Category,Top_5_Reasons,Age,HR,SBP,MAP,Shock_Index,SOFA_Total,Lactate
+017072,24,1,1,0.892,High Risk,"Elevated Shock Index (1.24); High SOFA Score (4); Tachycardia (112); Elevated Lactate (3.2); Low MAP (58)",68.54,112,90,58,1.24,4,3.2
+017073,18,0,0,0.234,Low Risk,"Normal finding; Normal finding; Normal finding; Normal finding; Normal finding",45.21,78,120,82,0.65,1,1.1
+017074,36,1,1,0.876,High Risk,"High SOFA Score (3); Elevated Lactate (2.8); Tachycardia (105); Low MAP (62); Normal finding",72.15,105,100,62,1.05,3,2.8
+017075,12,0,0,0.156,Low Risk,"Normal finding; Normal finding; Normal finding; Normal finding; Normal finding",58.43,72,130,88,0.55,0,0.9
+017076,48,1,1,0.934,High Risk,"Elevated Shock Index (1.45); High SOFA Score (5); Elevated Lactate (4.1); Tachycardia (118); Low MAP (55)",81.67,118,81,55,1.45,5,4.1
+017077,6,0,0,0.412,Moderate Risk,"Normal finding; Normal finding; Elevated Lactate (2.1); Normal finding; Normal finding",63.29,88,115,75,0.77,1,2.1
+017078,30,1,1,0.798,Moderate Risk,"High SOFA Score (3); Tachycardia (98); Elevated Lactate (2.5); Normal finding; Normal finding",69.84,98,110,70,0.89,3,2.5
+017079,24,0,0,0.087,Low Risk,"Normal finding; Normal finding; Normal finding; Normal finding; Normal finding",51.12,68,125,85,0.54,0,0.8
+017080,42,1,1,0.867,High Risk,"Elevated Shock Index (1.18); High SOFA Score (4); Tachycardia (108); Elevated Lactate (3.0); Low MAP (60)",76.33,108,92,60,1.18,4,3.0
+017081,18,0,0,0.298,Low Risk,"Normal finding; Normal finding; Normal finding; Normal finding; Normal finding",42.78,75,118,80,0.64,1,1.0
